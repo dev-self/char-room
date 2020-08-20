@@ -6,7 +6,7 @@ var http = require('http').Server(apps);
 var io = require('socket.io')(http);
 
 var App = require('app-binary');
-var app = new App('TIX7nFQxJz4CIFg');
+
 var action_buy = false;
 var stake = 0.50;
 
@@ -17,11 +17,13 @@ apps.get('/', (req, res) => {
 });
 // start 13.053.22
 function Play(){
+    var app = new App('TIX7nFQxJz4CIFg');
     app.Binary((e)=>{
         //console.log(e)
         if(e.profile) app.spot('R_25')
         if(e.spot){
             if(e.spot.worm == 'B' && action_buy == false){
+                console.log('buy')
                 action_buy = true
                 app.buy({
                     stake   : stake,
