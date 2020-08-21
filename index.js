@@ -99,8 +99,10 @@ var time = ()=>{
   console.log(new Date(), new Date().getSeconds())
 }
 
-setInterval(time, 3000)
+setInterval(time, 500)
 http.listen(PORT, () => {
   App()
 console.log('listening on *:5000');
 });
+
+//3.44
