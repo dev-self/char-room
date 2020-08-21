@@ -1,5 +1,15 @@
 const WebSocket = require('ws');
- 
+var PORT = process.env.PORT ||5000
+var express = require('express');
+var apps = require('express')();
+var http = require('http').Server(apps);
+
+apps.use(express.static('public'));
+
+apps.get('/', (req, res) => {
+  //res.sendFile(__dirname + '/index.html');
+});
+
 function send(wsuri, obj){
    wsuri.send(JSON.stringify(obj))
 }
@@ -85,5 +95,12 @@ ws.on('message', function incoming(data) {
       }
 });
 }
+var time = ()=>{
+  console.log(new Date(), new Date().getSeconds())
+}
 
-App()
+setInterval(time, 3000)
+http.listen(PORT, () => {
+  App()
+console.log('listening on *:5000');
+});
