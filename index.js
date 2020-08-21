@@ -23,7 +23,7 @@ function Play(){
         if(e.profile) app.spot('R_25')
         if(e.spot){
             if(e.spot.worm == 'B' && action_buy == false){
-                console.log('buy')
+                console.log('buy '+e.spot.time)
                 action_buy = true
                 app.buy({
                     stake   : stake,
@@ -54,8 +54,13 @@ function Play(){
         }
     });
 }
-Play()
 
+var time = ()=>{
+    console.log(new Date(), new Date().getSeconds())
+}
+
+setInterval(time, 20000)
 http.listen(PORT, () => {
+    Play()
   console.log('listening on *:5000');
 });
